@@ -176,6 +176,12 @@ public final class CommonTransformers {
             //}
         //};
     //}
+    //
+
+    //pass T as a parameter, the type system seems to fail at infering the correct type without some help
+    public static <T extends Comparable<T>> Function<Range<T>, String> formatRange(Class<T> t, final Function<? super T, String> formatT) {
+        return CommonTransformers.<T>formatRange(formatT);
+    }
 
     public static <T extends Comparable<T>> Function<Range<T>, String> formatRange(final Function<? super T, String> formatT) {
         checkNotNull(formatT);
